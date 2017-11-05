@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+	<meta charset="utf-8">
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    <script type="text/javascript">
+        function allowDrop(ev) {
+            ev.preventDefault();
+        }
+
+
+        function dragtxt(ev) {
+             //ev.dataTransfer.setData("text", ev.target.id);
+           $("#div2").append('<div><input type="text" placeholder="test"><br><br></div>');
+           //$("#div2").append("Some appended text.");
+        }
+
+        function dragbutton(ev) {
+             //ev.dataTransfer.setData("text", ev.target.id);
+           $("#div2").append('<div><input type="Submit" value="button"><br><br></div>');
+           //$("#div2").append("Some appended text.");
+        }
+        function dragradio(ev) {
+             //ev.dataTransfer.setData("text", ev.target.id);
+           $("#div2").append('<div><input type="radio" name="gender" value="other"> radio button <br><br></div>');
+           //$("#div2").append("Some appended text.");
+        }
+
+        function dragliste(ev) {
+             //ev.dataTransfer.setData("text", ev.target.id);
+           $("#div2").append('<div><select name="liste"><option value="chap1">champ1</option></select><br><br></div>');
+           //$("#div2").append("Some appended text.");
+        }
+
+        function dragarea(ev) {
+             //ev.dataTransfer.setData("text", ev.target.id);
+           $("#div2").append('<div><textarea name="message" rows="10" cols="30">your text</textarea><br><br></div>');
+           //$("#div2").append("Some appended text.");
+        }
+
+        function drop(ev) {
+            ev.preventDefault();
+            var data = ev.dataTransfer.getData("text");
+            ev.target.appendChild(document.getElementById(data));
+        }
+</script>
+
+	<style>
+#div1 {
+    float: left;
+    width: 300px;
+    height: 600px;
+    margin: 10px;
+    padding: 10px;
+    border: 1px solid black;
+}
+#div2 {
+    float: left;
+    width: 600px;
+    height: 600px;
+    margin: 10px;
+    padding: 10px;
+    border: 1px solid brown;
+}
+</style>
+	<title></title>
+</head>
+<body>
+	<h2>Drag and Drop</h2>
+<p>Drag the image back and forth between the two div elements.</p>
+
+<div id="div1" ondrop="drop(event)" ondragover="allowDrop(event)">
+	<form >
+	   <input type="text" value="champ text" draggable="true" ondragstart="dragtxt(event)" id="drag1"><br><br>
+	   <input type="Submit" value="bouton" draggable="true" ondragstart="dragbutton(event)" id="drag2"><br><br>
+	   <input type="radio" name="gender" value="other" draggable="true" ondragstart="dragradio(event)" id="drag3"> radio button <br><br>
+	   <select name="liste"draggable="true" draggable="true" ondragstart="dragliste(event)" id="drag4">
+            <option value="chap1">champ1</option>
+            <option value="champ2">champ2</option>
+            <option value="champ3">champ3</option>
+            <option value="champ4">champ4</option>
+        </select><br><br>
+        <textarea name="message" rows="10" cols="30" draggable="true" ondragstart="dragarea(event)" id="drag5">ecrivez votre texte ici</textarea><br><br>
+        <input type="password" name="champ mot de passe " draggable="true" ondragstart="drag6(event)" id="drag6"><br><br>
+        <input type="date" name="bday" draggable="true" ondragstart="drag7(event)" id="drag7">
+	</form>
+</div>
+
+<div id="div2" ondrop="drop(event)" ondragover="allowDrop(event)"></div>
+
+</body>
+</html>
